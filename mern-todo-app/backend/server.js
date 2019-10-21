@@ -2,9 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const todoRoutes = express.Router();
 
 const app = express();
 const PORT = 4000;
+
+let Todo = require('./todo.model');
 
 app.use(cors());
 app.use(bodyParser.json);
@@ -15,7 +18,6 @@ const connection = mongoose.connection;
 
 connection.once('open', function(){
     console.log('MongoDB database connection established successfully');
-    
 });
 
 app.listen(PORT, function(){
