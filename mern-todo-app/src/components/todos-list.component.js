@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Todo = props => (
     <tr>
-        <td>{props.todo.todo_description}</td>
-        <td>{props.todo.todo_responsible}</td>
-        <td>{props.todo.todo_priority}</td>
+        <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_description}</td>
+        <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_responsible}</td>
+        <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_priority}</td>
         <td>
             <Link to={"/edit/" + props.todo._id}>Edit </Link>
         </td>
@@ -15,7 +15,7 @@ const Todo = props => (
 
 export default class TodosList extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             todos: []
@@ -24,23 +24,23 @@ export default class TodosList extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:4000/todos')
-             .then(res => {
-                this.setState({todos: res.data});
-             })
-             .catch(err => console.log(err)); 
+            .then(res => {
+                this.setState({ todos: res.data });
+            })
+            .catch(err => console.log(err));
     }
 
-    todoList(){
-        return this.state.todos.map(function(currTodo, index){
-            return <Todo todo={currTodo} key={index}/>;
+    todoList() {
+        return this.state.todos.map(function (currTodo, index) {
+            return <Todo todo={currTodo} key={index} />;
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <h3>Todos List</h3>
-                <table className="table table-striped" style={{margin: 20}}>
+                <table className="table table-striped" style={{ margin: 20 }}>
                     <thead>
                         <tr>
                             <th>Description</th>
@@ -50,7 +50,7 @@ export default class TodosList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.todoList() }
+                        {this.todoList()}
                     </tbody>
                 </table>
             </div>
