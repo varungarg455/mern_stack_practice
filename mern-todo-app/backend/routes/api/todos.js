@@ -16,7 +16,11 @@ router.get('/', function (req, res) {
 router.route('/:id').get(function (req, res) {
     let id = req.params.id;
     Todo.findById(id, function (err, todo) {
-        res.json(todo);
+        if (!todo) {
+            res.status(404).json();
+        } else {
+            res.json(todo);
+        }
     });
 });
 
@@ -45,9 +49,9 @@ router.route('/update/:id').post(function (req, res) {
             todo.save().then(todo => {
                 res.status(200).json('Todo updated');
             })
-                .catch(err => {
-                    res.status(400).send("Update not possible");
-                });
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
         }
     });
 });
