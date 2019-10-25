@@ -30,6 +30,14 @@ export default class TodosList extends Component {
             .catch(err => console.log(err));
     }
 
+    componentDidUpdate() {
+        axios.get('http://localhost:4000/todos')
+            .then(res => {
+                this.setState({ todos: res.data });
+            })
+            .catch(err => console.log(err));
+    }
+
     todoList() {
         return this.state.todos.map(function (currTodo, index) {
             return <Todo todo={currTodo} key={index} />;
