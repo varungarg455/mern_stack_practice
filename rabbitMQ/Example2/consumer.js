@@ -23,7 +23,7 @@ amqp.connect(url, function (err_conn, conn) {
                 console.log(" [x] Done");
                 channel.ack(msg);
             }, secs * 1000);
-        }, { noAck: false });
+        });
 
     });
 });

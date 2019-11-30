@@ -10,16 +10,18 @@ amqp.connect(url, function (err_conn, conn) {
         if (err_channel) {
             throw err_channel;
         }
-        var queue = 'task_queue';
-        var msg = process.argv.slice(2).join(' ') || "Hello World!";
+        var exchange = 'direct_logs';
+        var args = process.argv.slice(2);
+        var msg = args.slice(1).join(' ') || 'Hello World!';
+        var severity = (args.length > 0) ? args[0] : 'info';
 
         //durable means that queue will not be lost if server restarts
-        channel.assertQueue(queue, {
-            durable: true
+        channel.assertExchange(exchange, 'direct', {
+            durable: false
         });
 
-        channel.sendToQueue(queue, Buffer.from(msg));
-        console.log(`Sent to queue ${msg}`);
+        channel.publish(exchange, severity, Buffer.from(msg));
+        console.log(`Sent to exchange ${severity} : ${msg}`);
     });
 
     setTimeout(function () {
