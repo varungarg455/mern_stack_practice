@@ -1,0 +1,7 @@
+.hidden {
+  display: none;
+}
+
+.counter-error {
+  color: red;
+}
