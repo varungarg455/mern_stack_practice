@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
-import Congrats from "./Congrats";
+import GuessedWords from './GuessedWords';
+import Congrats from './Congrats';
 
-function App() {
-  return (
-    <div data-test="app-component">
-      <Congrats success={false}/>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <div className="container" data-test={"app-component"}>
+                <h1>Jotto</h1>
+                <Congrats success={true}/>
+                <GuessedWords guessedWords={[
+                    {guessedWord: 'train', letterMatchCount: 3},
+                ]}/>
+            </div>
+        );
+    }
 }
 
 export default App;
