@@ -1,1 +1,0 @@
-import {IMAGES} from "../constants";
