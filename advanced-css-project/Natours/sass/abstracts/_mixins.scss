@@ -1,0 +1,18 @@
+//Use to clear background collapse due to usage of floats
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin clip-path($var){
+  -webkit-clip-path: $var;
+  clip-path: $var;
+}
+
+@mixin box-decoration-break($var){
+  -webkit-box-decoration-break: $var;
+  box-decoration-break: $var;
+}
