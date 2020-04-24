@@ -1,0 +1,17 @@
+/* Universal selectors */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* Forcing box-sizing property to inherit */
+}
+
+/* root font size (1rem) */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
