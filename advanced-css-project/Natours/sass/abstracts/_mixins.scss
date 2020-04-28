@@ -7,12 +7,31 @@
   }
 }
 
-@mixin clip-path($var){
+@mixin clip-path($var) {
   -webkit-clip-path: $var;
   clip-path: $var;
 }
 
-@mixin box-decoration-break($var){
+@mixin box-decoration-break($var) {
   -webkit-box-decoration-break: $var;
   box-decoration-break: $var;
+}
+
+@mixin shape-outside($var) {
+  -webkit-shape-outside: $var;
+  shape-outside: $var;
+}
+
+@mixin center-align() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin hyphens($var){
+  -moz-hyphens: $var;
+  -webkit-hyphens: $var;
+  -ms-hyphens: $var;
+  hyphens: $var;
 }
